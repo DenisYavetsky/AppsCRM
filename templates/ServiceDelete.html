@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Удалить услугу
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <p>Вы действительно хотите удалить услугу: {{ service.name }}?</p>
+        <form action="{% url 'serviceDelete' service.id %}" method="POST">
+            {% csrf_token %}
+            <a class="btn btn-sm btn-warning" href="{% url 'serviceList' %}">Отмена</a>
+            <button type="submit" class="btn btn-primary btn-sm">Удалить</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список групп пользователей
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <h3>Группы пользователей</h3>
+        <table class="table table-sm table-hover">
+            <thead>
+            <tr class="d-flex">
+                <th class="col-sm-3">Имя группы</th>
+                <th class="col-sm-6">Описание</th>
+                <th class="col-sm-2">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+                <tr class="d-flex">
+                    <td class="col-sm-3">{{ group.name }}</td>
+                    <td class="col-sm-6"> {{ group.description }}</td>
+                    <td class="col-sm-2">
+                        <a class="btn btn-sm btn-info" href="{% url 'personalGroupChange' group.id %}">Изменить</a>
+                        <a class="btn btn-sm btn-danger"
+                           href="{% url 'personalGroupDelete' group.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="col-2" style="margin-left: -15px">
+        <a class="btn btn-primary  btn-sm btn-block" href="{% url 'personalGroupAdd' %}">Добавить</a>
+    </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+

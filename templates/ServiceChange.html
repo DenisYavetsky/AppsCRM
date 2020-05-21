@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Изменить услугу
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <form method="post">
+            {% csrf_token %}
+            <div style="margin-left: 15px">
+                <h3>Изменить услугу</h3>
+            </div>
+            <div class="form-group col-9">
+                <label for="">Название услуги</label>
+                <textarea class="form-control" name="name" rows="3">{{ service.name }}</textarea>
+            </div>
+            <div class="form-group col-3">
+                <label for="">Стоимость услуги, р</label>
+                <input type="number" class="form-control" name="price" value={{ service.price }}>
+            </div>
+            <div style="margin-left: 15px">
+                <button type="submit" class="btn btn-primary">Изменить</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Удалить статус заявки
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <p>Вы действительно хотите удалить статус: {{ status.name }}?</p>
+        <form action="{% url 'applicationStatusDelete' status.id %}" method="POST">
+            {% csrf_token %}
+            <a class="btn btn-sm btn-warning" href="{% url 'applicationStatusList' %}">Отмена</a>
+            <button type="submit" class="btn btn-primary btn-sm">Удалить</button>
+        </form>
+    </div>
+{% endblock %}

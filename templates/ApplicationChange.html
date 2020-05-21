@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Изменить статус заявки
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <form method="post">
+            {% csrf_token %}
+            {{ formset.as_p }}
+        </form>
+    </div>
+{% endblock %}

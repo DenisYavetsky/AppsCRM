@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список статусов заявок
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <h3>Статусы заявок</h3>
+        <table class="table table-sm table-hover">
+            <thead>
+            <tr class="d-flex">
+                <th class="col-sm-3">Имя статуса</th>
+                <th class="col-sm-6">Описание</th>
+                <th class="col-sm-2">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for status in AppStatus %}
+                <tr class="d-flex">
+                    <td class="col-sm-3">{{ status.name }}</td>
+                    <td class="col-sm-6"> {{ status.description }}</td>
+                    <td class="col-sm-2">
+                        <a class="btn btn-sm btn-info" href="{% url 'applicationStatusChange' status.id %}">Изменить</a>
+                        <a class="btn btn-sm btn-danger"
+                           href="{% url 'applicationStatusDelete' status.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="col-2" style="margin-left: -15px">
+        <a class="btn btn-primary  btn-sm btn-block" href="{% url 'applicationStatusAdd' %}">Добавить</a>
+    </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+

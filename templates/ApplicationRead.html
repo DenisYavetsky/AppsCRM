@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Подробная информация о заявке
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <div style="margin-left: 15px">
+            <h3>Подробная информация о заявке</h3>
+        </div>
+        <div class="info">
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Номер заявки</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.number }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Статус</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Услуга</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Исполнитель</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Контрагент</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Дата создания</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Дата начала работ</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Стоимость</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Тип оплаты</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label>Примечание</label>
+                </div>
+                <div class="form-group col-8">
+                    <label>{{ application.status }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="history">
+            <div>
+                <h5>История заявки</h5>
+            </div>
+        </div>
+    </div>
+{% endblock %}

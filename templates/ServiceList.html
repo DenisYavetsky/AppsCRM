@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список услуг
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <h3>Список услуг</h3>
+        <table class="table table-sm table-hover">
+            <thead>
+            <tr class="d-flex">
+                <th class="col-sm-6">Название услуги</th>
+                <th class="col-sm-2">Стоимость, р</th>
+                <th class="col-sm-2">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for service in services %}
+                <tr class="d-flex">
+                    <td class="col-sm-6">{{ service.name }}</td>
+                    <td class="col-sm-2"> {{ service.price }}</td>
+                    <td class="col-sm-2">
+                        <a class="btn btn-sm btn-info" href="{% url 'serviceChange' service.id %}">Изменить</a>
+                        <a class="btn btn-sm btn-danger"
+                           href="{% url 'serviceDelete' service.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="col-2" style="margin-left: -15px">
+        <a class="btn btn-primary  btn-sm btn-block" href="{% url 'serviceAdd' %}">Добавить</a>
+    </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+

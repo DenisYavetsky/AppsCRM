@@ -6,8 +6,8 @@
 
 {% block content %}
     <div class="wrap">
-        <p>Вы действительно хотите удалить группу: {{ group.name }}?</p>
-        <form action="{% url 'personalGroupDelete' group.id %}" method="POST">
+        <p>Вы действительно хотите удалить группу: {{ personalGroup.name }}?</p>
+        <form action="{% url 'personalGroupDelete' personalGroup.id %}" method="POST">
             {% csrf_token %}
             <a class="btn btn-sm btn-warning" href="{% url 'personalGroupList' %}">Отмена</a>
             <button type="submit" class="btn btn-primary btn-sm">Удалить</button>

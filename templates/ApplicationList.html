@@ -19,8 +19,11 @@
                     </td>
                     <td class="col-sm-2">{{ application.date_create }}</td>
                     <td class="col-sm-2">{{ application.name }}</td>
+                    <td class="col-sm-2">{{ application.customer }}</td>
+
                     <td class="col-sm-2">
                         <a class="btn btn-sm btn-info" href="{% url 'applicationRead' application.id %}">Подробнее</a>
+                        <a class="btn btn-sm btn-info" href="{% url 'applicationChange' application.id %}">Изменить</a>
                     </td>
                 </tr>
             {% endfor %}

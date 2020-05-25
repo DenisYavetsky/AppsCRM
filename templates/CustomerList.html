@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Список заказчиков
+{% endblock %}
+
+{% block content %}
+    <div class="wrap">
+        <h3>Список заказчиков</h3>
+        <table class="table table-sm table-hover">
+            <thead>
+            <tr class="d-flex">
+                <th class="col-sm-6">Имя</th>
+                <th class="col-sm-2">Телефон</th>
+                <th class="col-sm-2">Email</th>
+                <th class="col-sm-2">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+                <tr class="d-flex">
+                    <td class="col-sm-6">{{ customer.name }}</td>
+                    <td class="col-sm-2"> {{ customer.phone }}</td>
+                    <td class="col-sm-2"> {{ customer.email }}</td>
+                    <td class="col-sm-2">
+                        <a class="btn btn-sm btn-info" href="{% url 'customerChange' customer.id %}">Изменить</a>
+                        <a class="btn btn-sm btn-danger"
+                           href="{% url 'customerDelete' customer.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div class="col-2" style="margin-left: -15px">
+        <a class="btn btn-primary  btn-sm btn-block" href="{% url 'customerAdd' %}">Добавить</a>
+    </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+

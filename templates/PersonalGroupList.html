@@ -16,14 +16,14 @@
             </tr>
             </thead>
             <tbody>
-            {% for group in groups %}
+            {% for personalGroup in personalGroups %}
                 <tr class="d-flex">
-                    <td class="col-sm-3">{{ group.name }}</td>
-                    <td class="col-sm-6"> {{ group.description }}</td>
+                    <td class="col-sm-3">{{ personalGroup.name }}</td>
+                    <td class="col-sm-6"> {{ personalGroup.description }}</td>
                     <td class="col-sm-2">
-                        <a class="btn btn-sm btn-info" href="{% url 'personalGroupChange' group.id %}">Изменить</a>
+                        <a class="btn btn-sm btn-info" href="{% url 'personalGroupChange' personalGroup.id %}">Изменить</a>
                         <a class="btn btn-sm btn-danger"
-                           href="{% url 'personalGroupDelete' group.id %}">Удалить</a>
+                           href="{% url 'personalGroupDelete' personalGroup.id %}">Удалить</a>
                     </td>
                 </tr>
             {% endfor %}

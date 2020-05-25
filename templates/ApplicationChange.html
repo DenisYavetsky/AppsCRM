@@ -8,7 +8,61 @@
     <div class="wrap">
         <form method="post">
             {% csrf_token %}
-            {{ formset.as_p }}
+            <div style="margin-left: 15px">
+                <h3>Изменить заявку</h3>
+            </div>
+            <div class="form-group col-9">
+                <label for="">Имя заявки</label>
+                <input type="text" class="form-control" name="name" value="{{ application.name }}">
+            </div>
+            <div class="form-group col-9">
+                <label for="">Заказчик</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                           value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Выбрать из списка
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                           value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Создать нового
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-9">
+                <label for="">Контактные данные (после обработки заявки поле должно быть пустым)</label>
+                <textarea class="form-control" name="prim" rows="3">{{ application.prim }}</textarea>
+            </div>
+            <div class="form-group col-9">
+                <label for="">Статус</label>
+                {{ form.status }}
+            </div>
+            <div class="form-group col-9">
+                <label for="">Услуга</label>
+                {{ form.service }}
+            </div>
+            <div class="form-group col-9">
+                <label for="">Оператор</label>
+                {{ form.operator }}
+            </div>
+            <div class="form-group col-9">
+                <label for="">Исполнитель</label>
+                {{ form.worker }}
+            </div>
+            <div style="margin-left: 15px">
+                <button type="submit" class="btn btn-primary">Изменить</button>
+            </div>
         </form>
     </div>
+    <script>
+        console.log($(this));
+        $(this).find('#exampleRadios1').on('change', function (e) {
+            console.log(e)
+        });
+
+
+    </script>
 {% endblock %}

@@ -31,7 +31,7 @@
                     <label>Услуга</label>
                 </div>
                 <div class="form-group col-8">
-                    <label>{{ application.status }}</label>
+                    <label>{{ application.service }}</label>
                 </div>
             </div>
             <div class="row">
@@ -39,7 +39,7 @@
                     <label>Исполнитель</label>
                 </div>
                 <div class="form-group col-8">
-                    <label>{{ application.status }}</label>
+                    <label>{{ application.worker }}</label>
                 </div>
             </div>
             <div class="row">
@@ -47,7 +47,7 @@
                     <label>Контрагент</label>
                 </div>
                 <div class="form-group col-8">
-                    <label>{{ application.status }}</label>
+                    <label>{{ application.customer }}</label>
                 </div>
             </div>
             <div class="row">
@@ -94,6 +94,9 @@
         <div class="history">
             <div>
                 <h5>История заявки</h5>
+                {% for applicationhistory in applicationhistories %}
+                    <div>{{ applicationhistory.date_change }}{{ applicationhistory.note }}</div>
+                {% endfor %}
             </div>
         </div>
     </div>

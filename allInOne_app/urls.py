@@ -6,6 +6,7 @@ from django.conf import settings
 urlpatterns = [
     path('', views.main, name='main_url'),
     path('alt/', views.new, name='new'),
+    path('todo/', views.todolist, name='todolist'),
     path('application/', views.applicationList, name='applicationList'),
     path('application/add', views.applicationAdd, name='applicationAdd'),
     path('application/read/<int:pk>', views.applicationRead, name='applicationRead'),
@@ -27,4 +28,8 @@ urlpatterns = [
     path('personalgroup/add', views.personalGroupAdd, name='personalGroupAdd'),
     path('personalgroup/change/<int:pk>', views.personalGroupChange, name='personalGroupChange'),
     path('personalgroup/delete/<int:pk>', views.personalGroupDelete, name='personalGroupDelete'),
+    path('customer/', views.customerList, name='customerList'),
+    path('customer/add', views.customerAdd, name='customerAdd'),
+    path('customer/change/<int:pk>', views.customerChange, name='customerChange'),
+    path('customer/delete/<int:pk>', views.customerDelete, name='customerDelete'),
 ]

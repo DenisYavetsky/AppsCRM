@@ -9,26 +9,96 @@
         <form method="post">
             {% csrf_token %}
             <div style="margin-left: 15px">
-                <h3>Создать заявку</h3>
+                <h3>Добавить заявку</h3>
             </div>
             <div class="form-group col-9">
                 <label for="">Имя заявки</label>
                 <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group col-9">
-                <label for="">Статус заявки</label>
+                <label for="">Заказчик</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="1" id="exampleRadios1"
+                           checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Выбрать из списка
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="2" id="exampleRadios2">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Создать нового
+                    </label>
+                </div>
+            </div>
+            <div class="block-text" id="block-1">
+                <div class="form-group col-9">
+                    {{ form.customer }}
+                </div>
+            </div>
+
+            <div class="block-text" id="block-2" style="display: none">
+                <div class="form-group col-9">
+                    {{ form_c }}
+                </div>
+            </div>
+            <div class="form-group col-9">
+                <label for="">Контактные данные (после обработки заявки поле должно быть пустым)</label>
+                <textarea class="form-control" name="prim" rows="3"></textarea>
+            </div>
+            <div class="form-group col-9">
+                <label for="">Статус</label>
                 {{ form.status }}
             </div>
             <div class="form-group col-9">
                 <label for="">Услуга</label>
                 {{ form.service }}
             </div>
+            <div class="form-group col-9">
+                <label for="">Оператор</label>
+                {{ form.operator }}
+            </div>
+            <div class="form-group col-9">
+                <label for="">Исполнитель</label>
+                {{ form.worker }}
+            </div>
             <div style="margin-left: 15px">
                 <button type="submit" class="btn btn-primary">Создать</button>
             </div>
-
         </form>
 
 
     </div>
+    <script>
+        $(window).load(function () {
+            $('#block-2').find('input[name="fio"]').removeAttr(('required'));
+            $('input[name="phone"]').removeAttr('required');
+            $('input[name="email"]').removeAttr('required');
+
+        });
+        $('input[name="exampleRadios"]').click(function () {
+            var target = $('#block-' + $(this).val());
+
+            if ($(this).val() === '1') {
+
+                $('#block-2').find('input[name="fio"]').removeAttr(('required'));
+                $('input[name="phone"]').removeAttr('required');
+                $('input[name="email"]').removeAttr('required');
+                $('select[name="customer"]').attr("required", "true");
+            } else {
+
+                $('#block-2').find('input[name="fio"]').attr("required", "true");
+                $('input[name="phone"]').attr("required", "true");
+                $('input[name="email"]').attr("required", "true");
+                $('select[name="customer"]').removeAttr('required');
+
+            }
+
+            $('.block-text').not(target).hide(0);
+            target.fadeIn(500);
+
+        });
+
+
+    </script>
 {% endblock %}

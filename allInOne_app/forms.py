@@ -43,6 +43,7 @@ class ApplicationStatusForm(forms.ModelForm):
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
+
         # поля для заполнения
         fields = ('name', 'status', 'service', 'prim', 'customer', 'worker', 'operator')
         # псевдонимы полей для заполнения
@@ -51,8 +52,10 @@ class ApplicationForm(forms.ModelForm):
                   'service': 'Услуга',
                   'prim': 'Примечание'}
 
+
     def __init__(self, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)
+        self.fields['customer'].required = False
         self.fields['worker'].queryset = Personal.objects.filter(group=2)
         self.fields['operator'].queryset = Personal.objects.filter(group=1)
         self.fields['status'].widget.attrs.update({'class': 'form-control'})

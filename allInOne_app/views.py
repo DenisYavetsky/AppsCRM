@@ -28,7 +28,7 @@ def main(request):
                 App.number = 1
             else:
                 App.number = number['number__max'] + 1
-            #App.customer = Customer.objects.get(name="Тестовый заказчик")
+            # App.customer = Customer.objects.get(name="Тестовый заказчик")
 
             App.save()
 
@@ -67,19 +67,27 @@ def applicationChange(request, pk):
     data['method'] = 'change'
 
     application = get_object_or_404(Application, pk=pk)
+    customer = application.customer
     # запоминаем что было до именения заявки
     data['status'] = application.status
     data['name'] = application.name
     data['service'] = application.service
     form_c = CustomerForm()
     form = ApplicationForm(instance=application)
+
     if request.method == "POST":
 
         form = ApplicationForm(request.POST, instance=application)
+        form_c = CustomerForm(request.POST)
 
         if form.is_valid():
 
             application = form.save(commit=False)
+            if form_c.is_valid():
+                customer = form_c.save(commit=False)
+                customer.save()
+                application.customer = customer
+
             application.save()
 
             application_history_add(application, data)
@@ -88,22 +96,31 @@ def applicationChange(request, pk):
         else:
             form = ApplicationForm(instance=application)
 
-    return render(request, 'applicationChange.html', context={'application': application, 'form': form, 'form_c': form_c})
+    return render(request, 'applicationChange.html',
+                  context={'application': application, 'form': form, 'form_c': form_c})
 
 
 def applicationAdd(request):
     # добавить заяку
     data = dict()
     data['method'] = 'add'
-
+    form_c = CustomerForm()
     form = ApplicationForm()
     # application_form = inlineformset_factory(ApplicationStatus, Application, fields='__all__')
     if request.method == "POST":
         # читаем номер последний заявки
         number = Application.objects.all().aggregate(Max('number'))
         form = ApplicationForm(request.POST)
+        form_c = CustomerForm(request.POST)
+        print(form)
+
         if form.is_valid():
+
             App = form.save(commit=False)
+            if form_c.is_valid():
+                customer = form_c.save(commit=False)
+                customer.save()
+                App.customer = customer
             # номер новой заявки
             if str(number['number__max']) == 'None':
                 App.number = 1
@@ -116,7 +133,7 @@ def applicationAdd(request):
         else:
             form = ApplicationForm()
 
-    return render(request, 'applicationAdd.html', {'form': form})
+    return render(request, 'applicationAdd.html', {'form': form, 'form_c': form_c})
 
 
 def applicationDelete(request, pk):

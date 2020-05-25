@@ -7,20 +7,33 @@
 {% block content %}
     <div class="wrap">
         <h3>Заявки</h3>
-        <table class="table table-sm table-hover" >
+        <table class="table table-sm table-hover">
             <thead>
+
+            <tr class="d-flex">
+                <th class="col-sm-1">Номер</th>
+                <th class="col-sm-2">Статус</th>
+                <th class="col-sm-2">Дата создания</th>
+                <th class="col-sm-2">Имя</th>
+                <th class="col-sm-2">Заказчик</th>
+                <th class="col-sm-1">Оператор</th>
+                <th class="col-sm-1">Мастер</th>
+                <th class="col-sm-2">Действия</th>
+            </tr>
 
             </thead>
             <tbody>
             {% for application in applications %}
                 <tr class="d-flex">
                     <td class="col-sm-1" align="center" style="font-size:26px">{{ application.number }}</td>
-                    <td class="col-sm-2"><li class="list-group-item list-group-item-primary">{{ application.status.name }}</li>
+                    <td class="col-sm-2">
+                        <li class="list-group-item list-group-item-primary">{{ application.status.name }}</li>
                     </td>
                     <td class="col-sm-2">{{ application.date_create }}</td>
                     <td class="col-sm-2">{{ application.name }}</td>
                     <td class="col-sm-2">{{ application.customer }}</td>
-
+                    <td class="col-sm-1">{{ application.operator }}</td>
+                    <td class="col-sm-1">{{ application.worker }}</td>
                     <td class="col-sm-2">
                         <a class="btn btn-sm btn-info" href="{% url 'applicationRead' application.id %}">Подробнее</a>
                         <a class="btn btn-sm btn-info" href="{% url 'applicationChange' application.id %}">Изменить</a>

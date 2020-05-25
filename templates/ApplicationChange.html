@@ -18,18 +18,27 @@
             <div class="form-group col-9">
                 <label for="">Заказчик</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                           value="option1" checked>
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="1" id="exampleRadios1">
                     <label class="form-check-label" for="exampleRadios1">
                         Выбрать из списка
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                           value="option2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="2" id="exampleRadios2">
                     <label class="form-check-label" for="exampleRadios2">
                         Создать нового
                     </label>
+                </div>
+            </div>
+            <div class="block-text" id="block-1" style="display: none">
+                <div class="form-group col-9">
+                    {{ form.customer }}
+                </div>
+            </div>
+
+            <div class="block-text" id="block-2" style="display: none">
+                <div class="form-group col-9">
+                    {{ form_c }}
                 </div>
             </div>
             <div class="form-group col-9">
@@ -58,9 +67,24 @@
         </form>
     </div>
     <script>
-        console.log($(this));
-        $(this).find('#exampleRadios1').on('change', function (e) {
-            console.log(e)
+        $('input[name="exampleRadios"]').click(function () {
+            var target = $('#block-' + $(this).val());
+
+            if ($(this).val() === '1') {
+
+                $('#block-2').find('input[name="fio"]').removeAttr(('required'));
+                $('input[name="phone"]').removeAttr(('required'));
+                $('input[name="email"]').removeAttr(('required'));
+            } else {
+
+                $('#block-2').find('input[name="fio"]').attr("required", "true");
+                $('input[name="phone"]').attr("required", "true");
+                $('input[name="email"]').attr("required", "true");
+            }
+
+            $('.block-text').not(target).hide(0);
+            target.fadeIn(500);
+
         });
 
 

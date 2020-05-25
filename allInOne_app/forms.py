@@ -7,15 +7,15 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         # поля для заполнения
-        fields = ('name', 'phone', 'email')
+        fields = ('fio', 'phone', 'email')
         # псевдонимы полей для заполнения
-        labels = {'name': 'Имя',
+        labels = {'fio': 'Имя',
                   'phone': 'Телефон',
                   'email': 'Почта'}
 
     def __init__(self, *args, **kwargs):
         super(CustomerForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['fio'].widget.attrs.update({'class': 'form-control'})
         self.fields['phone'].widget.attrs.update({'class': 'form-control'})
         self.fields['email'].widget.attrs.update({'class': 'form-control'})
 

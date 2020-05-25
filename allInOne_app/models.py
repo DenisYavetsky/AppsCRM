@@ -36,7 +36,7 @@ class Service(models.Model):
 # заказчик
 class Customer(models.Model):
     # ФИО
-    name = models.CharField(max_length=150)
+    fio = models.CharField(max_length=150)
     # почта
     email = models.EmailField()
     # телефон
@@ -48,7 +48,7 @@ class Customer(models.Model):
         verbose_name_plural = 'Заказчики'
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.fio)
 
 
 # группы сотрудников
